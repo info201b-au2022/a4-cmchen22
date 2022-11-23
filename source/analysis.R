@@ -25,9 +25,6 @@ test_query2 <- function(num=6) {
 }
 
 ## Section 2  ---- 
-#----------------------------------------------------------------------------#
-# Your functions and variables might go here ... <todo: update comment>
-#----------------------------------------------------------------------------#
 
 
 
@@ -62,27 +59,26 @@ black_state_rate <- prison_data %>%
 
 
 
-  
+
 
 
 
 ## Section 3  ---- 
 #----------------------------------------------------------------------------#
 # Growth of the U.S. Prison Population
-# Your functions might go here ... <todo:  update comment>
-#----------------------------------------------------------------------------#
-# This function ... <todo:  update comment>
+
+#Data wrangling
 get_year_jail_pop <- function() {
-  # TODO: Implement this function 
+
   total_pop_year <- data.frame(Year = prison_data$year, Jail_Pop = prison_data$total_jail_pop)
-return(total_pop_year)   
+  return(total_pop_year)   
 }
 
 View(get_year_jail_pop())
 
-# This function ... <todo:  update comment>
+#Bar chart
 plot_jail_pop_for_us <- function()  {
-  # TODO: Implement this function 
+
   growth_chart <- ggplot(get_year_jail_pop()) +
     geom_col(mapping = aes(x = Year, y = Jail_Pop), fill = "#FF6666") +
     labs(x = "Year", y = "Total Jail Population in America", caption = "This is a visual representation of the American total Jail population between 1970 and 2018") +
@@ -97,9 +93,7 @@ plot_jail_pop_for_us()
 ## Section 4  ---- 
 #----------------------------------------------------------------------------#
 # Growth of Prison Population by State 
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
-#----------------------------------------------------------------------------#
+---------------------------------------------------#
 ##This function gets the growth of jail population for each state
 get_jail_pop_by_states <- function(states){
   state_growth <- prison_data%>%
@@ -117,16 +111,13 @@ plot_jail_pop_by_states <- function(states){
     labs(x = "Year", y = "Total Jail Population", caption = "This is a visual representation of the growth of jail population for a state ") + 
     ggtitle("Jail Population growth by State (1970 - 2018)")
   return(state_growth_chart)
-    
+  
 }
 plot_jail_pop_by_states(c("WA", "CA"))
 
 ## Section 5  ---- 
 #----------------------------------------------------------------------------#
-# <variable comparison that reveals potential patterns of inequality>
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
-#----------------------------------------------------------------------------#
+#Scatterplot that compares the black vs white jail percentage in America
 
 race <- function(){
   rate <- data.frame(Black_Jail_Percentage = ((prison_data$black_jail_pop/prison_data$black_pop_15to64) * 100),
@@ -144,26 +135,24 @@ race_plot <- function(){
     geom_point(mapping = aes(x = Black_Jail_Percentage, y = White_Jail_Percentage))+
     ggtitle("White vs Black jail population percentage in the USA (2018)")+
     labs(x = "Black Jail Population percentage", y = "White Jail Population percentage", caption = "This chart shows differences between White and Black jail population percentage.")
-    
+  
   return(race_chart)
-    
+  
   
 }
 race_plot()
 
 ## Section 6  ---- 
 #----------------------------------------------------------------------------#
-# Map of black prison percentage for each state of America
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
-#----------------------------------------------------------------------------#
+# Map of black prison percentage for each state of America and Map of white prison percentage for each state of America
+
 get_pop_black_per_state <- function() {
   dataframe <- prison_data %>%
     group_by(state)%>%
     filter(year == 2018) %>%
     summarize(black_jail = sum(black_jail_pop, na.rm = TRUE) , total_black = sum(black_pop_15to64,  na.rm= TRUE)) %>% 
     mutate(percentage = (black_jail / total_black) * 100, na.rm = TRUE )%>%
-  return(dataframe)
+    return(dataframe)
 }
 
 frame_for_map <- get_pop_black_per_state()
@@ -209,11 +198,11 @@ get_pop_white_per_state <- function() {
     mutate(percentage = (white_jail / total_white) * 100, na.rm = TRUE )%>%
     return(dataframe2)
 }
-
 frame_for_map_white <- get_pop_white_per_state()
+view(frame_for_map_white)
 
-frame_for_map_white$state <- tolower(state.name[match(frame_for_map$state, state.abb)])
-
+frame_for_map_white$state <- tolower(state.name[match(frame_for_map_white$state, state.abb)])
+view(frame_for_map_white)
 state_shape_2 <- map_data("state") %>%
   rename(state = region) %>%
   left_join(frame_for_map_white, by = "state")
@@ -247,4 +236,3 @@ map_white_jail_prop <- function() {
 
 
 map_white_jail_prop()
-

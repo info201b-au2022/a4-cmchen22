@@ -42,7 +42,7 @@ In order to summarize the systematic racism faced by Black Americans, I wrangled
 plot_jail_pop_for_us()
 ```
 
-This bar chart contextualizes the growth of the American prison population. According to the bar chart, the American prison population remained fairly steady in the 1970s, then suddently had an explosive growth between 1980 and 2000, where thereafter it began to plateau. Since 2000, the American prison population has slowly decreased, although only by small amounts. The quesiton is: What caused the large increase between 1980 and 2000?
+This bar chart contextualizes the growth of the American prison population. According to the bar chart, the American prison population remained fairly steady in the 1970s, then suddenly had an explosive growth between 1980 and 2000, where thereafter it began to plateau. Since 2000, the American prison population has slowly decreased, although only by small amounts. The question is: What caused the large increase between 1980 and 2000?
 
 ## Section 4: Growth of Prison Population by state
 ```{r echo = FALSE}
@@ -63,9 +63,12 @@ According to the scatter plot, there is a clear bias against Black Americans. Th
 ## Section 6: Map (Percentage of Black Americans in prison for each state)
 
 ```{r echo = FALSE}
+  
   map_black_jail_prop()
   map_white_jail_prop()
+  
 ```
+
 
 
 
