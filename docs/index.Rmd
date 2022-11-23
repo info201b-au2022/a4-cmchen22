@@ -1,7 +1,7 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
-date: '2022-11-01'
+title: "Injustices in White vs Black incarceration in 2018 America"
+author: "Christopher Chen"
+date: '2022-11-22'
 output: html_document
 ---
 
@@ -11,35 +11,64 @@ source("../source/analysis.R")
 ```
 
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
+ This project is meant to analyze trends in White vs Black jail percentages in the US, as well as analyzing America's prison statistics as a whole. Using this data, this project can detect inequities in the modern American justice system based on the data analyzed.  
 
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
-```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
-
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
-
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
-
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
 
 ## Introduction 
-[TODO]
+Throughout arguably all of American history, African Americans have been systemically oppressed in many ways. One of the most prominent examples of systematic racist oppression is the perpetual racist bias against African Americans in the American justice system, leading to vastly higher incarceration rates for African Americans vs white Americans. The goal of this project is to analyze the extent of this oppression. 
+
+Direct stakeholders include activists who would be willing to use this data to raise awareness of this issue, and also to organize meetings/protests. Politicians would also be direct stakeholders, because this data could potentially convince them to support or enact policies that would help end this racist bias against African Americans. Indirect Stakeholders would be the African American community as a whole, because direct stakeholders could affect this community by creating change. 
+
+Some central values I need to engage include consistency and accuracy. Consistency in the fact that I simply look for the data, with no preconceived purposes in mind. I react based on the data, and I let other people draw their own conclusions about the data. Accuracy in the fact that I will try my best to remove any outliers, and provide the clearest possible perspective of the situation.
+
+The questions I aim to answer in my report include:
+
+Are Black Americans over incarcerated compared to White Americans in 2018?
+
+How has the American prison population changed between 1970 to 2018?
+
+How has the American prison population grown between 1970 to 2018 for each state?
+
+Which states have the most Black Americans in prison?
+
 
 ## Data Summary 
-[TODO]
 
-[TODO ... other sections ... See Canvas for details]
+In order to summarize the systematic racism faced by Black Americans, I wrangled the data to find out some basic facts about the situation. For example, the state with the highest black jail population in 2018 is `r highest_state_pop`. The year where most Black Americans were jailed was `r highest_black_year`. Although total population can be very useful, the percentage of Black Americans who are incarcerated is arguably even more important. The state with the highest black jail percentage in 2018 is `r black_state_rate`.
 
+## Section 3: Growth of the U.S. Prison Population
+
+```{r echo = FALSE}
+plot_jail_pop_for_us()
+```
+
+This bar chart contextualizes the growth of the American prison population. According to the bar chart, the American prison population remained fairly steady in the 1970s, then suddently had an explosive growth between 1980 and 2000, where thereafter it began to plateau. Since 2000, the American prison population has slowly decreased, although only by small amounts. The quesiton is: What caused the large increase between 1980 and 2000?
+
+## Section 4: Growth of Prison Population by state
+```{r echo = FALSE}
+plot_jail_pop_by_states(c("WA", "CA", "OR"))
+```
+
+This line chart contextualizes the growth of prison population between 1970 and 2018 for Washington, California, and Oregon. According to the line chart, California experienced an explosive growth in jail population between 1980 and 1990, while Oregon and Washington experienced smaller increases. I chose these states because I live in Washington, and Washington has a very close relationship with Oregon and California, since they are neighbors. The question is: Why does California have such a large prison population increase in the 1980s, and what seperates California from Oregon and Washington?
+
+
+## Section 5: Black vs White jail population percentage
+```{r echo = FALSE}
+race_plot()
+```
+
+
+According to the scatter plot, there is a clear bias against Black Americans. There are many dots where the Black Jail Population percentage is above 2 percent, but there are just a handful of counties where the white jail population percentage is above 2 percent. Furthermore, there are no counties where the white jail population percentage is above 4 percent, but there are many counties where the black jail population percentage is above 5 percent. This clearly reveals systemic racism against Black Americans. The question is: What can we do to lower the amount of Black Americans in jail?
+
+## Section 6: Map (Percentage of Black Americans in prison for each state)
+
+```{r echo = FALSE}
+  map_black_jail_prop()
+  map_white_jail_prop()
+```
+
+
+
+According to the two maps, it is very clear that the average percentage of Black Americans in prison is much higher than the average percentage of White Americans in prison. This is a great argument for the statement that there is systemic racism against Black Americans in America. While There aren't any states where the percentage of White Americans is aboe 1 percent, there are several states that have the same for Black Americans. A question is: How can we reduce systemic racism in America? Are there any confounding factors, or can we take this data at face value?
 _All the very best with your work!_
 
